@@ -1,26 +1,31 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 
 export default function HomeScreen() {
-  const [people, setPeople] = useState([
-    { name: "shaun", key: "1" },
-    { name: "yoshi", key: "2" },
-    { name: "mario", key: "3" },
-    { name: "luigi", key: "4" },
-    { name: "peach", key: "5" },
-    { name: "toad", key: "6" },
-    { name: "bowser", key: "7" },
+  const [todos, setTodos] = useState([
+    { text: "buy coffee", key: "1" },
+    { text: "create an app", key: "2" },
+    { text: "play on the switch", key: "3" },
   ]);
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-        {people.map((item) => (
-          <View key={item.key}>
-            <Text style={styles.item}>{item.name}</Text>
-          </View>
-        ))}
-      </ScrollView>
+      {/* header */}
+      <View style={styles.content}>
+        {/* to form */}
+        <View style={styles.list}>
+          <FlatList
+            data={todos}
+            renderItem={({ item }) => <Text>{item.text}</Text>}
+          />
+        </View>
+      </View>
     </View>
   );
 }
@@ -33,12 +38,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     // alignItems: "center",
     // justifyContent: "center",
-  },
-
-  item: {
-    marginTop: 24,
-    padding: 30,
-    backgroundColor: "pink",
-    fontSize: 24,
   },
 });
